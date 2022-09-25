@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+
+
+    }
+
+    p {
+        /* Center horizontally*/
+        text-align: center;
+    }
+
+    h2 {
+        /* Center horizontally*/
+        text-align: center;
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8 mt-3 left">
+                {% for post in post_list %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text text-muted h6">{{ post.create_date}}</p>
+                        <p class="card-text">{{post.content|slice:":200" }}</p>
+                        <p><a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Read</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
